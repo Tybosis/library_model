@@ -11,24 +11,25 @@
 
 class Book
   attr_reader :title, :author
+  attr_accessor :shelved
   def initialize(args)
     @title = args[:title]
     @author = args[:author]
-    @shelfed = false
+    @shelved = false
   end
 
   def enshelf(shelf)
-    if @shelfed
+    if shelved
       puts 'Book already exits on a shelf.  Please unshelf first.'
     else
       shelf.push(self)
-      @shelfed = true
+      self.shelved = true
     end
   end
 
   def unshelf(shelf)
     shelf.delete(self)
-    @shelfed = false
+    self.shelved = false
   end
 
   def to_s
